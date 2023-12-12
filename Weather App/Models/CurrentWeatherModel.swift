@@ -16,24 +16,23 @@ struct CurrentWeatherModel {
     let id: Int
     let name: String
     
+    //MARK: - country
     var country: String {
-        //return sys.country
         return Locale.current.localizedString(forRegionCode: sys.country) ?? ""
     }
     
+    //MARK: - currentDay
     var currentDay: String {
         let date = Date()
         let formatter = DateFormatter()
-        //formatter.dateFormat = "dd HH:mm"
-        //formatter.timeStyle = .short
         formatter.dateStyle = .full
         
         let dateString = formatter.string(from: date as Date)
         let dateArr = dateString.split(separator: ",")
-        // initially set the format based on your datepicker date / server String
         return String(dateArr[0])
     }
     
+    //MARK: - currentTime
     var currentTime: String {
         let date = Date()
         let formatter = DateFormatter()
@@ -43,6 +42,7 @@ struct CurrentWeatherModel {
         return formatter.string(from: date as Date)
     }
     
+    //MARK: - greeting
     var greeting: String {
         let amPm = currentTime.split(separator: " ")
         if String(amPm[1]) == "AM" {
@@ -52,6 +52,7 @@ struct CurrentWeatherModel {
         }
     }
     
+    //MARK: - appTheme
     var appTheme: APP_THEME {
         let amPm = currentTime.split(separator: " ")
         print(amPm[1])
@@ -62,6 +63,7 @@ struct CurrentWeatherModel {
         }
     }
     
+    //MARK: - sunsetTime
     var sunsetTime: String {
         let date = Date(timeIntervalSince1970: TimeInterval(sys.sunset))
         let formatter = DateFormatter()
@@ -71,6 +73,7 @@ struct CurrentWeatherModel {
         return formatter.string(from: date as Date)
     }
     
+    //MARK: - getTemperature
     func getTemperature(kelvin: Double) -> String {
         if sys.country == "US" {
             return "\(Int(kelvin - 273.15) * 9/5 + 32)℉"

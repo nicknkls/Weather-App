@@ -11,8 +11,7 @@ class CurrentWeatherScreenViewModel: ObservableObject {
     @Published var currentWeather: CurrentWeatherModel?
     
     func fetchData(lat: Double, lon: Double) {
-        if let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=8372757c26080a5e4c270e25eac1b665") {
-            print("https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=8372757c26080a5e4c270e25eac1b665")
+        if let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(OPEN_WEATHER.API_KEY)") {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
                 if error == nil {
@@ -20,7 +19,7 @@ class CurrentWeatherScreenViewModel: ObservableObject {
                     if let safeData = data {
                         do {
                             let weatherResults = try decoder.decode(CurrentWeatherData.self, from: safeData)
-                            DispatchQueue.main.async { //When setting data to published -> must be on Main thread!
+                            DispatchQueue.main.async {
                                 self.currentWeather = CurrentWeatherModel(weather: weatherResults.weather, main: weatherResults.main, wind: weatherResults.wind, dt: weatherResults.dt, sys: weatherResults.sys, id: weatherResults.id, name: weatherResults.name)
                             }
                         } catch {
