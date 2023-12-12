@@ -1,0 +1,13 @@
+//
+//  Config.xcconfig
+//  Weather App
+//
+//  Created by Nick Nikolos on 10/12/23.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+
+OPEN_WEATHER_API_KEY = 8372757c26080a5e4c270e25eac1b665
+OPEN_WEATHER_API_URL = https:/$()/api.openweathermap.org
