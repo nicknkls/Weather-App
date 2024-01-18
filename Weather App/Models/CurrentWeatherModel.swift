@@ -52,6 +52,26 @@ struct CurrentWeatherModel {
         }
     }
     
+    //MARK: - weatherIcon
+    func weatherIcon(weatherConditionId: Int) -> String {
+        switch weatherConditionId {
+        case 200 ... 232:
+            return "cloud.bolt.rain"
+        case 300 ... 321:
+            return "cloud.drizzle"
+        case 500 ... 531:
+            return "cloud.rain"
+        case 600 ... 622:
+            return "cloud.snow"
+        case 701 ... 781:
+            return "sun.haze"
+        case 801 ... 804:
+            return "cloud"
+        default:
+            return "sun.max.fill"
+        }
+    }
+    
     //MARK: - appTheme
     var appTheme: APP_THEME {
         let amPm = currentTime.split(separator: " ")

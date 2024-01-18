@@ -12,6 +12,7 @@ class CurrentWeatherScreenViewModel: ObservableObject {
     
     func fetchData(lat: Double, lon: Double) {
         if let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(OPEN_WEATHER.API_KEY)") {
+            print(url)
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
                 if error == nil {

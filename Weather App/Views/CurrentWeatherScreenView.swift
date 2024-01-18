@@ -19,7 +19,8 @@ struct CurrentWeatherScreenView: View {
             VStack {
                 //Location name
                 Text(viewModel.currentWeather?.name ?? "")
-                    .font(.title)
+                    .font(.system(size: 40))
+                    .fontWeight(.bold)
                     .foregroundStyle(Color.white)
                 //Country name
                 Text(viewModel.currentWeather?.country ?? "")
@@ -38,7 +39,7 @@ struct CurrentWeatherScreenView: View {
             .padding(.vertical)
             
             //Weather Conditions Image
-            Image(systemName: "sun.haze")
+            Image(systemName: viewModel.currentWeather?.weatherIcon(weatherConditionId: viewModel.currentWeather?.weather[0].id ?? 800) ?? "sun.max.fill")
                 .symbolRenderingMode(.palette)
                 .foregroundStyle(
                     LinearGradient(colors: [.white, .white], startPoint: UnitPoint(x: 0.7, y: 0.7), endPoint: UnitPoint(x: 0.9, y: 0.9)),
