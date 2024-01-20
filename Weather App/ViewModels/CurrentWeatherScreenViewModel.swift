@@ -34,6 +34,5 @@ class CurrentWeatherScreenViewModel: ObservableObject {
             }
             task.resume()
         }
-        
     }
 }
